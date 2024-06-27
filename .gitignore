@@ -11,4 +11,5 @@
 *.log
 *.png
 PAT.txt
+!f2.png
 
