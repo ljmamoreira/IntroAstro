@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage[a4paper]{geometry}
+\usepackage{icomma, amsmath, tikz, physics, enumitem}
+\title{Apontamentos do CNCG Introdução à Astronomia}
+\author{Luís JM Amoreira (FCUBI, Dep. Física)\\
+\texttt{amoreira@ubi.pt}}
+\date{Junho e Julho de 2024}
+
+\begin{document}
+\maketitle
+\section{Atividades com o stellarium}
+\subsection{Dia solar e dia sideral}
+\label{sec:dsoldsid}
+\begin{minipage}[t]{0.7\linewidth}
+O período de rotação da Terra em torno do seu eixo, medido relativamente a um
+referencial inercial, é muito aproximadamente constante e vagamente identificado
+com um dia. Mas aquilo a que chamamos vulgarmente \emph{dia} é mais corretamente
+designado \emph{dia solar,} e corresponde ao intervalor de tempo entre duas
+auroras, dois ocasos, ou meios dias solares num determinado local da Terra.
+Porque a Terra tem também o movimento orbital em torno do Sol (ver a figura),
+o dia solar é um pouco mais longo que o período de rotação da Terra propriamente
+dito, cujo nome técnico é \emph{dia sideral.}
+\end{minipage}\hfill
+\begin{tikzpicture}[baseline=(current bounding box.north)]
+\small
+\pgfmathsetmacro{\ai}{35}
+\pgfmathsetmacro{\af}{10}
+\pgfmathsetmacro{\au}{3}
+\draw (0,0) coordinate (s);
+
+%\draw [->] (-\ai+8:\au) arc (-\ai+8:-\af-8:\au);
+
+\draw (s) -- (-\ai:\au) coordinate(t1)
+  node [fill=white, circle, draw, inner sep=0.5, very thick]{T}
+  node [shift={(4mm,-1mm)}]{$t_1$};
+\draw (s) -- (-\af:\au) coordinate(t2) node [shift={(4mm,-1mm)}]{$t_2$};
+\draw [densely dashed] (t2) --+(180-\ai:0.75*\au);
+\node at (t2) [fill=white, circle, draw, inner sep=0.5,very thick ]{T};
+\node at (s) [circle,draw, fill=white, inner sep=3, very thick] {S};
+
+\draw [->,thin](-\ai: 0.35*\au) arc(-\ai: -\af: 0.35*\au) node [below right]{$\theta$};
+
+\draw [->,thin]([shift=(180-\ai:0.35*\au)]t2) arc(180-\ai: 180-\af: 0.35*\au) node [above left]{$\theta$};
+
+\draw[->,thin] ([shift=(185-\ai:0.2*\au)]t2) arc(185-\ai: 175-\ai+360: 0.2*\au);
+\node at (t2)[yshift=7.5mm]{\scriptsize360$^\circ$} ;
+\end{tikzpicture}
+
+\vspace{0.2em}
+Estas duas durações, do dia solar e do dia sideral podem ser facilmente
+``medidas'' com o stellarium, determinando os instantes de duas passagens
+sucessivas do Sol (para o dia solar) e de outra estrela qualquer (para o dia
+sideral) pelo meridiano local.
+
+\noindent
+\textbf{Procedimento}
+\begin{enumerate}
+  \item Ative a opção da representação do meridiano local no stellarium:
+    \begin{itemize}
+      \item
+        no menu vertical, escolher ``Sky and viweing options window'' (ou
+        pressione F4);
+      \item na janela de opções de visualização, selecione o separador
+        ``Markings'';
+      \item ative a opção ``Meridian'' (na segunda coluna).
+    \end{itemize}
+  \item
+    Usando os botões de controlo de tempo (no extremo esquerdo da menu
+    horizontal) encontre o momento $t_1$ em que o Sol passa no meridiano e páre
+    a evolução nesse instante.
+  \item
+    Acrescente 24\,h ao tempo, usando a funcionalidade ``Date/time window''
+    disponível no menu vertical (ou pressionando F5).
+  \item
+    Recorrendo como antes aos controles de tempo (à esquerda no menu
+    horizontal), determine novamente o instante $t_2$ da passagem do sol pelo
+    meridiano. A duração do dia solar é a do intervalo de tempo $t_2-t_1$.
+  \item Para determinar a duração do dia sideral, repete-se todo este processo,
+    usando uma estrela qualquer que não o Sol.
+\end{enumerate}
+
+As durações do dia sideral e do dia solar são iguais? Qual é mais longo? A
+diferença (cerca de 3\,min 56\,s) pode ser facilmente estimada com um cálculo
+simples. Pense nisso!
+
+Podemos repetir estas determinações em diferentes dias. A duração do dia solar é
+sempre igual? E a do dia sideral? Qual destes intervalos é mais estável? Porquê?
+
+\subsection{Movimento do Sol e dos planetas relativamente às estrelas fixas} 
+É mais fácil reparar no movimento relativo se ``pararmos'' o movimento das
+estrelas. E como esse movimento é muito lento, teremos que ``acelerar'' a marcha
+do tempo no stellarium. Como teremos que acompanhar o percurso ao longo de
+vários dias, é melhor ``apagar'' a atmosfera e o ``chão'' que iriam
+periodicamente ocultar os astros observados. Finalmente, é conveniente usar uma
+montagem equatorial para evitar as oscilações causadas pela rotação da Terra.
+
+\textbf{Procedimento}
+\begin{enumerate}
+  \item ``Apague'' a representação da atmosfera e do chão no stellarium.
+  \item Ative a observação com uma montagem equatorial.
+  \item Encontre o Sol (CRTL-F).
+  \item acelere a marcha do tempo no stellarium.
+  \item Note como o Sol se move de oeste para leste (no sentido oposto ao
+    movimento aparente) relativamente ao fundo das estrelas fixas.
+  \item Note como todos os planetas seguem aproximadamente a trajetória do Sol,
+    uns mais rapidamente que outros.
+\end{enumerate}
+A trajetória seguida pelo Sol (e, aproximadamente, por todos os planetas) na
+esfera celeste chama-se \emph{eclíptica.} É a linha onda o plano da órbita da
+Terra (e, aproximadamente, da dos restantes planetas do sistema solar)
+intersecta a esfera celeste.
+\begin{enumerate}[resume]
+  \item Repare que alguns planetas sofrem, mais ou menos frequentemente,
+    inversões no sentido do seu movimento (ainda relativamente ao fundo das
+    estrelas fixas). É o chamado \emph{movimento retrógrado,} na verdade apenas
+    uma manifestação do movimento relativamente à Terra.
+\end{enumerate}
+
+\subsection{Inclinação da eclíptica}
+O eixo de rotação da Terra está inclinado relativamente à perpendicular do seu
+plano orbital, cerca de 23$^\circ$. Esta inclinação determina a sucessão das
+estações na Terra. 
+
+\noindent
+\begin{minipage}[t]{0.65\linewidth}
+  \hspace{1em}
+Se a inclinação da ecliptíca fosse nula, ou seja, se o eixo de rotação da Terra
+fosse perpendicular ao plano orbital, o ângulo entre a vertical e os raios
+solares ao meio dia solar num dado ponto da superfície da Terra seria igual à
+latitude do local. Na figura ao lado, ilustra-se essa situação. A direção dos
+raios solares é paralela ao plano orbital (orientado horizontalmente na figura),
+$\lambda$ representa a latitude do local considerado, e {\sf v} e {\sf h} são
+respetivamente, a vertical e o plano horizontal desse
+local. 
+
+\hspace{1em}
+Como o eixo da Terra não é perpendicular ao plano da órbita, a coisa complica-se
+um pouco. Mas, no solísticio de Verão, ao meio dia solar do ponto considerado, a
+disposição geométrica a considerar é a representada na figura ao lado, em baixo.
+A inclinação do eixo da Terra é o ângulo $\alpha$ e aparece agora representado a
+direção do plano equador {\sf e}, que já não coincide com o plano orbital. Da
+figura, deduz-se facilmente que
+\begin{align*}
+\lambda+(90^\circ-\theta-\alpha)=90^\circ \implies \alpha=\lambda-\theta.
+\end{align*}
+\end{minipage}\hfill
+\begin{tikzpicture}[baseline=(current bounding box.north)]
+  \footnotesize
+  \sf
+  \pgfmathsetmacro{\r}{1}
+  \draw [very thick] (0,0) coordinate(o) circle(\r);
+  \draw [dashed] (o) -- (40:1.6*\r) node[right]{\sf v};
+  \draw  (0,-1.1*\r) -- (0, 1.5*\r) node[above]{PN};
+  \coordinate(p) at(40:\r);
+  \draw [thin] ([shift=(130:0.8)]p) -- +(-50:2.1) node[fill=white]{\sf h};
+  \draw (-1.1*\r,0) -- (3*\r,0);
+  \draw (0:0.4) node[above right]{$\lambda$} arc (0:40:0.4);
+  \foreach \y in {0.943, 0.643, 0.343}{
+	\draw [->] (3*\r,\y*\r) -- +(-1,0);
+  }
+  \draw [dashed] (p) -- +(1,0);
+  \begin{scope}[yshift=-4cm]
+    \begin{scope}[rotate=-23]
+      \draw [very thick] (0,0) coordinate(o) circle(\r);
+      \draw [dashed] (o) -- (40:1.75*\r) node[right]{v};
+      \draw  (0,-1.1*\r) -- (0, 1.5*\r) node[above]{PN};
+      \coordinate(p) at(40:\r);
+      \draw [thin] ([shift=(130:0.8)]p) -- +(-50:2.1) node[fill=white]{h};
+      \draw (-10:0.4) node[below, inner sep=1]{$\lambda$} arc (-10:40:0.4);
+      \draw (-1.1*\r,0) node [left] {\sf e}-- (1.1*\r,0);
+    \end{scope}
+    \foreach \y in {0.943, 0.643, 0.343}{
+      \draw [->] (3*\r,\y*\r) -- +(-1,0);
+    }
+    \draw [dashed] (p) -- +(1,0);
+    \draw ([xshift=6mm]p) arc(0:25:6mm) node[above, inner sep=1]{$\theta$};
+    \draw (-1.1*\r,0) -- (3*\r,0);
+
+    \draw [dashed] (o) -- +(0,1.4*\r);
+    \draw (100:0.6*\r) node[left, inner sep=1]{$\alpha$}arc(100:67:.6*\r);
+  \end{scope}
+\end{tikzpicture}
+
+\noindent
+\textbf{Procedimento}
+\begin{enumerate}
+  \item ``Acerte'' a data do stellarium para dia 20 de Junho (solísticio de
+    Verão em 2024).
+  \item Determine o momento do meio dia solar (seguindo a parte relevante do
+    procedimento da Secção~\ref{sec:dsoldsid}). Páre o tempo do stellarium.
+  \item
+    Com a ferramenta de medição de ângulo meça o ângulo entre o horizonte e o
+    Sol (ou, simplesmente, veja na informação sobre o Sol qual o valor da sua
+    altitude). O ângulo $\theta$ é o complementar deste ângulo. Que valor obtém
+    para a inclinação da eclíptica?
+\end{enumerate}
+Há mais formas de fazer esta determinação. Por exemplo, pode repetir-se esta
+análise (com as devidas adaptações) para o meio dia solar do solistício de
+Inverno. E o desvio angular máximo (que ocorre nos solistícios) do ponto onde o
+Sol se ergue e se põe relativamente à direção Este-Oeste está também relacionado
+com a inclinação da eclíptica e há-de assim poder ser usado para a determinar
+
+
+\subsection{As fases de Vénus e o modelo geocêntrico}
+\textbf{Procedimento}
+\begin{enumerate}
+  \item
+    Desative a representação da Terra e da atmosfera e pare a marcha do tempo;
+  \item
+    localize Vénus (usando o comando de busca, CTRL-F) e centre-o no centro da
+    imagem (se Vénus está selecionado, basta pressionar a barra de espaço);
+  \item
+    aumente a imagem (zoom in, usando a roda do rato) até o disco de Vénus ter
+    uma dimensão apreciável;
+  \item
+    ative a janela de Data e Hora e avance o tempo mês a mês;
+  \item
+    note como o tamanho do disco de Vénus varia de mês para mês, e correlacione
+    essas variações com as fases de iluminação. Quando o disco de Vénus está
+    completamente iluminado (Vénus ``cheio''), o seu tamanho é máximo, ou
+    mínimo? E quando está completamente escurecido (Vénus ``novo'')? Como
+    podemos interpretar estas observações em termos dos modelos geocêntrico e
+    heliocêntrico?
+
+\end{enumerate}
+
+\subsection{O raio da Terra (Eratóstenes)}
+\subsection{O raio da Lua (Hiparco)}
+
+\end{document}

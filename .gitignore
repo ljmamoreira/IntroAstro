@@ -1,0 +1,13 @@
+*.swp
+*.aux
+*_latexmk
+*.fls
+*.nav
+*.out
+*.pdf
+*.snm
+*.synctex.gz
+*.toc
+*.log
+*.png
+
